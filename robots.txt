@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://jeonyeohun.github.io/sitemap.xml
+Host: https://jeonyeohun.github.io
