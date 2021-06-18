@@ -13,7 +13,10 @@ class NotFoundPage extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <Head title="404: Not Found" />
         <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <p>
+          블로그를 이전해서 요청하신 주소에 대한 포스트가 보이지 않을 수
+          있습니다! 홈으로 이동하셔서 카테고리를 선택해 포스트를 찾아주세요!
+        </p>
       </Layout>
     )
   }
