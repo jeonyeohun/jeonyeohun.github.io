@@ -96,8 +96,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://jeonyeohun.netlify.app',
-        sitemap: 'https://jeonyeohun.netlify.app/sitemap.xml',
+        host: 'https://jeonyeohun.github.io/',
+        sitemap: 'https://jeonyeohun.github.io/sitemap.xml',
         policy: [
           {
             userAgent: '*',

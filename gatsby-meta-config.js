@@ -3,7 +3,7 @@ module.exports = {
   description: `고민이 담긴 코드를 만들자, 고민하기 위해 공부하자.`,
   author: `전여훈`,
   introduction: `고민이 담긴 코드를 만들자, 고민하기 위해 공부하자.`,
-  siteUrl: `https://jeonyeohun.netlify.app`, // Your blog site url
+  siteUrl: `https://jeonyeohun.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
     github: `jeonyeohun`, // Your GitHub account
