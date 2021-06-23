@@ -532,3 +532,217 @@ draft: false
   print(triangleAndSquare.triangle.sideLength)
   // Prints "50.0"
   ```
+
+- Optional 을 다룰 때는 메서드 호출, 변수 참조앞에 `?` 를 붙이는 것으로 쉽게 `nil`을 핸들링 할 수 있다. 만약 `?` 앞에 있는 값이 `nil` 이라면 뒤에 따라오는 모든 코드는 무시되고 `nil` 이 값으로 사용된다.
+
+  ```swift
+    let optionalSquare: Square? = Sqaure(sideLength: 2.5, name: "optional")
+    let sideLength = optionalSquare?.sideLength
+  ```
+
+## Enumerations and Structures
+
+- enumeration을 만들기 위해서는 `enum` 키워드를 이름 앞에 붙이고 enum을 구성할 요소들의 타잉블 지정해준다.
+
+  ```swift
+  enum Rank: Int {
+      case ace = 1
+      case two, three, four, five, six, seven, eight, nine, ten
+      case jack, queen, king
+
+      func simpleDescription() -> String {
+          switch self {
+              case .ace:
+                  return "ace"
+              case .jack:
+                  return "jack"
+              case .king:
+                  return "king"
+              case .queen:
+                  return "queen"
+              default:
+                  return String(self.rawValue)
+          }
+      }
+  }
+
+  let ace = Rank.ace
+  let aceRawValue = ace.rawValue
+
+  print(ace) // prints: "ace"
+  print(aceRawValue) // prints: "1"
+  ```
+
+- enum의 요소 값은 기본적으로 0부터 시작해서 오름차순으로 하나씩 증가하여 할당되지만, 요소의 값을 `직접 지정`해주는 것으로 바꿀 수 있다. 위 예시에서는 첫 case 인 ace 를 1로 지정해주어서 1, 2, 3, 4, ... 순으로 값이 지정되도록 했다. case 들이 가진 값들에 접근하려면 `rawValue 프로퍼티`를 사용하면 된다.
+- `init?(rawValue:)` 형태로 enumeration의 인스턴스를 만들 수 있다. `rawValue`인자로 주어진 값과 이ㄹ치하는 enum case 를 반환하고, 일치하는 case가 없다면 nil을 반환한다.
+  ```swift
+  if let convertedRank = Rank(rawValue: 3){
+      let threeDescription = convertedRank.simpleDescription()
+  }
+  ```
+- case 값들도 하나의 `값`으로 취급된다. 만약 rawValue 가 의미없는 값이라면 rawValue를 사용하지 않고 case 값만 사용해서 처리해도 된다.
+- 아래 예제처럼 raw value를 인스턴스를 `생성하는 순간에` 결정하여 지정할 수 있다.
+
+  ```swift
+  enum ServerResponse {
+      case result(String, String)
+      case failure(String)
+  }
+
+  let success = ServerResponse.result("6:00 am", "8:09 pm")
+  let failure = ServerResponse.failure("Out of cheese.")
+
+  switch success {
+  case let .result(sunrise, sunset):
+      print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+  case let .failure(message):
+      print("Failure...  \(message)")
+  }
+  ```
+
+- `struct` 키워드를 사용하면 structure를 만들 수 있다. structure는 클래스와 비슷하지만 class 는 pass-by-reference 로 전달되지만 structure는 `pass-by-value`를 사용한다는 큰 차이점이 있다. 즉, structure는 전달될 때 복사되어 전달된다.
+
+  ```swift
+  struct Card {
+      var rank: Rank
+      var suit: Suit
+      func simpleDescription() -> String {
+          return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+      }
+  }
+
+  let threeOfSpades = Card(rank: .three, suit: .spades)
+  let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+
+  print(threeOfSpadesDescription) // "The 3 of spades"
+  ```
+
+## Protocols and Extensions
+
+- `protocol` 키워드 사용해서 protocol을 선언할 수 있다.
+
+  ```swift
+  protocol ExampleProtocol {
+      var simpleDescription: String { get }
+      mutating func adjust()
+  }
+  ```
+
+- `class`, `enumeration`, `struct` 가 protocol을 adopt 하여 사용할 수 있다.
+- structure는 내부 메서드를 통해 내부 데이터를 수정하기 위해서 메서드의 이름 앞에 `mutating` 키워드를 붙여준다.
+- `extension` 키워드를 사용하면 기존에 존재하던 타입에 새로운 메서드나 연산프로퍼티를 추가할 수 있다.
+
+  ```swift
+  extension Int: ExampleProtocol {
+      var simpleDescription: String {
+          return "The number \(self)"
+      }
+      mutating func adjust() {
+          self += 42
+      }
+
+      print(7.simpleDescription) // "The number 7"
+  }
+  ```
+
+## Error Handling
+
+- error 를 정의하기 위해서는 `Error` protocol을 `adopt` 하면 된다.
+
+  ```swift
+  enum PrinterError: Error {
+      case outOfPaper
+      case noToner
+      case onFire
+  }
+  ```
+
+- `throw` 키워드를 사용해서 오류를 처리하는 방법도 있다.
+
+  ```swift
+  func send (job: Int, toPrinter printerName: String) throws -> String {
+      if printerName == "Never Has Toner" {
+          throw PrinterError.noToner
+      }
+
+      return "Job Sent"
+  }
+  ```
+
+- `do-catch` 를 사용하면 throw 된 오류를 처리할 수 있는 로직을 만들 수 있다. do 블록안에 `try` 키워드를 throw 가 있는 메서드의 호출 앞에 붙여주면, Error가 throw 되었을 때 catch 를 실행한다.
+
+  ```swift
+  do {
+      let printerResponse = try send(job: 1440, toPrinter: "AA")
+      print(printerResponse)
+  } catch PrinterError.onFire {
+      print("I'll just put this over here, with the rest of the fire.")
+  } catch let printerError as PrinterError {
+      print("Printer error: \(printerError).")
+  } catch {
+      print(error)
+  }
+
+  // prints: "Job Sent"
+  ```
+
+- `try?`를 사용해서 결과를 `optional`로 변환할 수 있다. 만약 호출된 함수가 error 를 throw 하면 결과 값을 nil로 저장한다.
+
+  ```swift
+  let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+  let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+  ```
+
+- `defer` 를 사용하면 함수 내부에 있는 모든 다른 코드들이 실행된 후에 실행할 코드를 정의할 수 있다. defer 를 사용하면 초기 세팅을 하는 코드 바로 다음에 defer를 선언해서 초기 값을 마지막에 어떻게 처리할지 가독성 좋게 정의할 수 있다.
+
+  ```swift
+  var fridgeIsOpen = false
+  let fridgeContent = ["milk", "eggs", "leftovers"]
+
+  func fridgeContains(_ food: String) -> Bool {
+      fridgeIsOpen = true
+      defer {
+          fridgeIsOpen = false
+      }
+
+      let result = fridgeContent.contains(food)
+      return result
+  }
+
+  fridgeContains("banana")
+  print(fridgeIsOpen) // "false"
+  ```
+
+## Generics
+
+- `generic` 함수나 타입을 만들기 위해서는 `<>` 안에 이름을 넣어주면 된다.
+
+  ```swift
+  func makeArray<item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
+      var result: [Item] = []
+      for _ in 0..<numberOfTimes {
+          result.append(item)
+      }
+
+      return result
+  }
+  makeArray(repeating: "knock", numberOfTimes: 4)
+  ```
+
+- `where` 키워드를 바디 블록 전에 선언해서 요구사항을 정의할 수 있다.
+
+  ```swift
+  func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool
+      where T.Element: Equatable, T.Element == U.Element
+  {
+      for lhsItem in lhs {
+          for rhsItem in rhs {
+              if lhsItem == rhsItem {
+                  return true
+              }
+          }
+      }
+      return false
+  }
+  anyCommonElements([1, 2, 3], [3])
+  ```
