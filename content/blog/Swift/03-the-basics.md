@@ -344,3 +344,29 @@ Array, Set, Dictionary는 `Collection Types` 이며 Tuple은 여러 데이터를
 
 - `Assertion` 과 `precondition`은 실행 중에 이 구문 이후의 코드를 계속 실행하기 전에 검사할 조건을 정의하기 위해 사용한다.
 - assertion과 precondition이 `false` 가 되면 더 이상 코드를 실행하지 않고 프로그램을 종료시킨다.
+- assertion과 precondition은 잘못된 조건이 발생하는 것을 막기 위해서 사용하는 것이 아니라, 프로그램이 잘못된 상태에 들어섰을 때, 프로그램을 정상적으로 종료시키기 위한 목적에 가깝다.
+- assertion과 precondition의 차이는 조건 검사를 수행하는 모드에 있다. assertion은 `debug build` 일 때만 조건을 검사하고, precondition은 `debug build` 와 `production build`에서 모두 조건검사를 수행한다. 따라서, assertion은 실제 배포시에는 프로그램 성능에 영향을 미치지 않기 때문에 자유롭게 사용할 수 있다.
+
+### Debugging with Assertions/Preconditions
+
+- assertion은 `assert(_:-:file:line:)` 을 사용해서 작성할 수 있다. assert 함수의 인자로 검사할 조건과, 조건이 false가 되었을 때 출력할 메세지를 작성하는 것으로 정의할 수 있다.
+- 메세지는 생략할 수 있다.
+
+  ```swift
+  let age = 3
+  assert(age >= 0, "A person's age can't be less than zero")
+  ```
+
+- assertion 조건을 assert 함수가 아닌 다른 방법으로 이미 검사했다면, `assertionFailure(_:file:line)` 함수를 호출하여 assertion을 일으킬 수 있다.
+
+  ```swift
+  if age > 10 {
+      print("you can ride the roller-coaster")
+  } else if age >= 0 {
+      print("You can ride the ferris wheel")
+  } else {
+      assertionFailure("A person's age cannot be less than zero")
+  }
+  ```
+
+- precondition은 assertion과 모든 내용이 같고 assert 함수 대신 `precondition(_:_:file:line:)`을 사용하고, assertionFailure 대신 `preconditionFailure(_:file:line:)`을 사용한다.
