@@ -158,6 +158,227 @@
 <li><code class="language-text">Double</code>은 64-bit 로 실수를 표현한다.</li>
 <li><code class="language-text">Float</code>는 32-bit 로 실수를 표현한다.</li>
 <li>Double 과 Float 을 둘 다 사용해도 괜찮은 환경이라면 Float 보다는 Double을 사용하는 것이 권장된다.</li>
+</ul>
+<h2 id="type-safety-and-type-inferance" style="position:relative;"><a href="#type-safety-and-type-inferance" aria-label="type safety and type inferance permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type Safety and Type Inferance</h2>
+<ul>
+<li>스위프트는 컴파일 시점에서 타입체킹을 수행한다.</li>
+<li>만약 타입이 명시되어 있지 않다면 <code class="language-text">type inference</code>를 통해 컴파일러가 타입을 부여한다.</li>
+<li>type inference 가 있기 때문에 상수나 변수를 선언과 동시에 초기화 할 때는 타입을 명시할 필요가 없다.</li>
+<li>스위프트는 실수에 대해 항상 <code class="language-text">Double</code> 타입으로 inferring 한다.</li>
+<li>
+<p>정수와 실수의 합 역시 <code class="language-text">Double</code> 타입으로 inferring 한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> anotherPi <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token number">0.14159</span> <span class="token comment">// anotherPu is inffered as Double</span></code></pre></div>
+</li>
+</ul>
+<h2 id="numeric-literals" style="position:relative;"><a href="#numeric-literals" aria-label="numeric literals permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Numeric Literals</h2>
+<ul>
+<li>10진수는 일반 표기로 표현한다.</li>
+<li>2진수는 앞에 <code class="language-text">0b</code>를 붙여 표현한다.</li>
+<li>8진수는 앞에 <code class="language-text">0o</code>를 붙여 표현한다.</li>
+<li>
+<p>16진수는 앞에 <code class="language-text">0x</code>를 붙여 표현한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> decimalInteger <span class="token operator">=</span> <span class="token number">17</span>
+<span class="token keyword">let</span> binaryInteger <span class="token operator">=</span> <span class="token number">0b10001</span>
+<span class="token keyword">let</span> octalInteger <span class="token operator">=</span> <span class="token number">0o21</span>
+<span class="token keyword">let</span> hexadecimalInteger <span class="token operator">=</span> <span class="token number">0x11</span></code></pre></div>
+</li>
+</ul>
+<h2 id="type-conversion" style="position:relative;"><a href="#type-conversion" aria-label="type conversion permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type Conversion</h2>
+<h3 id="integer-and-floating-point-conversion" style="position:relative;"><a href="#integer-and-floating-point-conversion" aria-label="integer and floating point conversion permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integer and Floating Point Conversion</h3>
+<ul>
+<li>
+<p>정수에서 실수로의 형변환은 항상 명시적으로 이루어져야한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> three <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">let</span> pointOneFourOneFiveNine <span class="token operator">=</span> <span class="token number">0.14159</span>
+<span class="token keyword">let</span> pi <span class="token operator">=</span> <span class="token function">Double</span><span class="token punctuation">(</span>three<span class="token punctuation">)</span> <span class="token operator">+</span> pointOneFoutOneFiveNine</code></pre></div>
+<p>three 를 형변환 하지 않고는 계산이 불가능하다.</p>
+</li>
+<li>
+<p>실수에서 정수로의 형변환 역시 명시적으로 이루어져야한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> integerPi <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span>pi<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+</li>
+</ul>
+<h2 id="type-aliases" style="position:relative;"><a href="#type-aliases" aria-label="type aliases permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type Aliases</h2>
+<ul>
+<li>
+<p><code class="language-text">typealias</code> 키워드를 사용하면 이미 존재하는 타입들에 대해 다른 이름을 부여할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">typealias</span> <span class="token builtin">AudioSample</span> <span class="token operator">=</span> <span class="token builtin">UInt16</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token builtin">AudioSample</span><span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">)</span> <span class="token comment">// "0"</span></code></pre></div>
+</li>
+</ul>
+<h2 id="booleans" style="position:relative;"><a href="#booleans" aria-label="booleans permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Booleans</h2>
+<ul>
+<li>Bool 타입은 <code class="language-text">true</code> 나 <code class="language-text">false</code> 인 논리 값을 가진다.</li>
+<li>스위프트는 다른 타입의 값을 Bool 타입으로 변환하지 않는다. 즉, 0이나 1을 Bool 타입 값으로 사용할 수 없다.</li>
+</ul>
+<h2 id="tuples" style="position:relative;"><a href="#tuples" aria-label="tuples permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tuples</h2>
+<ul>
+<li>tuples 는 여러 값들을 하나의 값으로 묶어주는 역할을 한다.</li>
+<li><code class="language-text">()</code> 를 통해 생성한다.</li>
+<li>tuple로 묶이는 값들은 <code class="language-text">서로 다른 타입이라도 상관없다</code>.</li>
+<li>
+<p>Tuple 에 들어있는 값들을 분해하기 위해서는 다음과 같이 사용할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> http404Error <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">,</span> <span class="token string">"Not Found"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> <span class="token punctuation">(</span>statusCode<span class="token punctuation">,</span> statusMessage<span class="token punctuation">)</span> <span class="token operator">=</span> http404Error
+<span class="token function">print</span><span class="token punctuation">(</span>statusCode<span class="token punctuation">)</span> <span class="token comment">// "404"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>statusMessage<span class="token punctuation">)</span> <span class="token comment">// "Not Found"</span></code></pre></div>
+</li>
+<li>
+<p>Tuple을 분해할 때, 필요없는 값이 있다면, <code class="language-text">_</code> 를 사용해서 무시할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> <span class="token punctuation">(</span>justTheStatusCode<span class="token punctuation">,</span> <span class="token number">_</span><span class="token punctuation">)</span> <span class="token operator">=</span> http404Error</code></pre></div>
+</li>
+<li>
+<p>Tuple의 요소에 접근하기 위해서 요소 번호로 접근하는 것도 가능하다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token function">print</span><span class="token punctuation">(</span>http404Error<span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// "404"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>http404Error<span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// "Not Found"</span></code></pre></div>
+</li>
+<li>
+<p>Tuple의 요소에 이름을 붙여서 사용하는 것도 가능하다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> http200Status <span class="token operator">=</span> <span class="token punctuation">(</span>statusCode<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span> description<span class="token punctuation">:</span> <span class="token string">"OK"</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>http200Status<span class="token punctuation">.</span>statusCode<span class="token punctuation">)</span> <span class="token comment">// "200"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>http200Status<span class="token punctuation">.</span>description<span class="token punctuation">)</span> <span class="token comment">// "OK"</span></code></pre></div>
+</li>
+</ul>
+<h2 id="optionals" style="position:relative;"><a href="#optionals" aria-label="optionals permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optionals</h2>
+<ul>
+<li>
+<p>Optional 은 변수에 값이 있어 내부에 접근하여 값을 가져올 수 있거나, 변수에 값이 없음을 표현한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> possibleNumber <span class="token operator">=</span> <span class="token string">"123"</span>
+<span class="token keyword">let</span> convertedNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span>possibleNumber<span class="token punctuation">)</span></code></pre></div>
+<p>이 예시에서 convertedNumber는 <code class="language-text">Optional Int(Int?)</code>로 inferring 된다. possibleNumber는 String 으로 inferring 되는데, String 의 값은 정수로 변환이 될 수도 있고, 불가능할 수도 있기 때문이다.</p>
+</li>
+</ul>
+<h3 id="nil" style="position:relative;"><a href="#nil" aria-label="nil permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>nil</h3>
+<ul>
+<li><code class="language-text">nul</code>은 Optional 타입 변수에 statless 를 저장할 떄 사용한다.</li>
+<li>
+<p>Optional 변수를 초기화 하지 않으면 자동으로 <code class="language-text">nil</code> 이 초기값으로 설정된다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">var</span> surveyAnswer<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token operator">?</span>
+<span class="token function">print</span><span class="token punctuation">(</span>surveryAnswer<span class="token punctuation">)</span> <span class="token comment">// "nil"</span></code></pre></div>
+</li>
+</ul>
+<h3 id="if-statements-and-forced-unwrapping" style="position:relative;"><a href="#if-statements-and-forced-unwrapping" aria-label="if statements and forced unwrapping permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>If Statements and Forced Unwrapping</h3>
+<ul>
+<li>
+<p><code class="language-text">if</code> 문을 통해 Optional이 값을 가지고 있는지 nil을 가지고 있는지 확인할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> convertedNumber <span class="token operator">!=</span> <span class="token constant">nil</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"There is a value"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+<li>
+<p>Optional 변수 끝에 <code class="language-text">!</code> 를 붙이면 Optional이 가지고 있는 변수를 사용하도록 할 수 있다</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> convertedNumber <span class="token operator">!=</span> <span class="token constant">nil</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span>convertedNumber<span class="token operator">!</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+</ul>
+<h3 id="optional-binding" style="position:relative;"><a href="#optional-binding" aria-label="optional binding permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional Binding</h3>
+<ul>
+<li><code class="language-text">optional binding</code> 을 사용하면 optional 변수가 값을 가지고 있을 때, 해당 값을 새로운 변수에 임시적으로 할당하여 사용하게 할 수 있다.</li>
+<li>
+<p>optional binding은 <code class="language-text">if</code> 와 <code class="language-text">while</code>에서 사용할 수 있다. 아래와 같은 형태로 사용한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> constantName <span class="token operator">=</span> someOptional <span class="token punctuation">{</span>
+  statements
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+<li>
+<p>위에서 사용한 possibleNumber 에 대한 예제를 다음처럼 작성할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> actualNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span>possibleNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span>actualNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"There is no possible number: <span class="token interpolation"><span class="token delimiter variable">\(</span>possibleNumber<span class="token delimiter variable">)</span></span>"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>이렇게 코드를 작성하면, possibleNumber에 정수로 변환할 수 있는 문자열이 들어오면 let으로 선언한 actualNumber 변수에 값이 들어가 출력되고, 정수로 변환할 수 있는 문자열이 들어오지 않아 nil이 되면 else 구분으로 들어가게 된다.</p>
+</li>
+<li>
+<p><code class="language-text">if</code> 구문에는 optional binding 이나 boolean condition을 여러개 작성할 수 있다. <code class="language-text">콤마(,)</code>를 통해 구분하고 만약 하나의 optional binding이나 boolean condition 이라도 <code class="language-text">nil</code> 이나 <code class="language-text">false</code>가 되면 모든 조건이 false 가 된다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> firstNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"4"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">let</span> secondNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"42"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> firstNumber <span class="token operator">&lt;</span> secondNumber <span class="token operator">&amp;&amp;</span> secondNumber <span class="token operator">&lt;</span> <span class="token number">100</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter variable">\(</span>firstNumber<span class="token delimiter variable">)</span></span> &lt; <span class="token interpolation"><span class="token delimiter variable">\(</span>secondNumber<span class="token delimiter variable">)</span></span> &lt; 100"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Prints "4 &lt; 42 &lt; 100"</span>
+
+<span class="token keyword">if</span> <span class="token keyword">let</span> firstNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"4"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token keyword">let</span> secondNumber <span class="token operator">=</span> <span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"42"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> firstNumber <span class="token operator">&lt;</span> secondNumber <span class="token operator">&amp;&amp;</span> secondNumber <span class="token operator">&lt;</span> <span class="token number">100</span> <span class="token punctuation">{</span>
+          <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"<span class="token interpolation"><span class="token delimiter variable">\(</span>firstNumber<span class="token delimiter variable">)</span></span> &lt; <span class="token interpolation"><span class="token delimiter variable">\(</span>secondNumber<span class="token delimiter variable">)</span></span> &lt; 100"</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Prints "4 &lt; 42 &lt; 100"</span></code></pre></div>
+</li>
+</ul>
+<h3 id="implicitly-unwrapped-optionals" style="position:relative;"><a href="#implicitly-unwrapped-optionals" aria-label="implicitly unwrapped optionals permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implicitly Unwrapped Optionals</h3>
+<ul>
+<li>만약 Optional 변수에 항상 값이 할당되어 <code class="language-text">nil</code>을 가질 일이 없다면 매번 실제 값에 접근하기 위해 Optional을 unwrap 하는 것은 낭비이다.</li>
+<li>이런 종류의 Optional 을 <code class="language-text">implicitly unwrapped optionals</code> 라고 한다.</li>
+<li>
+<p>implicitly unwrapped optionals 는 optional 타입 선언시 타입 이름 뒤에 느낌표를 붙이는 것으로 작성할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> assumedString<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token operator">!</span> <span class="token operator">=</span> <span class="token string">"An implicitly unwrapped optional string."</span></code></pre></div>
+</li>
+<li>implicitly unwrapped optionals 는 주로 클래스 인스턴스 생성시에 사용된다.</li>
+<li>
+<p>스위프트 컴파일러는 implicitly unwrapped optionals 를 <code class="language-text">optional value</code> 취급하고 optional value로 사용할 수 없는 경우에는 강제로 unwrap을 하여 값을 사용한다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> assumedString<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token operator">!</span> <span class="token operator">=</span> <span class="token string">"An implicitly unwrapped optional string."</span>
+<span class="token keyword">let</span> implicitString<span class="token punctuation">:</span> <span class="token builtin">String</span> <span class="token operator">=</span> assumedString <span class="token comment">// no need for an exclamation point</span></code></pre></div>
+<p>이 예제에서 implicitString 에 assumedString의 값을 할당할 수 있는 이유는 implicitString 이 optional value를 저장할 수 없기 때문에 assumedString을 강제로 wrap해서 내부의 값을 사용했기 때문이다.</p>
+</li>
+<li>만약 implicit unwrapped optional이 nil이고 이 optional을 unwrap 하려고 하면 <code class="language-text">런타임 오류</code>가 발생한다.</li>
+</ul>
+<h2 id="error-handling" style="position:relative;"><a href="#error-handling" aria-label="error handling permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error Handling</h2>
+<ul>
+<li>함수 내부에서 에러가 발생하면 해당 함수는 error를 <code class="language-text">throw</code> 한다. 그리고 해당 함수를 호출한 caller 가 <code class="language-text">catch</code> 를 통해 error handling 을 하게된다.</li>
+<li>
+<p>에러 발생 시 throw를 하도록 하기위해 함수 선언에 <code class="language-text">throws</code> 키워드를 붙여준다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function">canThrowAnError</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+<li>에러를 throw 하는 함수를 호출하고 에러를 인지하기 위해서 함수 호출 구문 앞에 <code class="language-text">try</code> 키워드를 붙여준다.</li>
+<li>스위프트는 에러가 발생한 현재 스코프에서 빠져나와 <code class="language-text">catch</code> 구문을 자동으로 찾아간다.</li>
+<li>
+<p>catch 구문이 있는 스코프를 정해주기 위해 <code class="language-text">do-catch</code> 블록을 만든다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function">makeASandwich</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token punctuation">{</span>
+<span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">do</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token function">makeASandwich</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">eatASandwich</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token builtin">SandwichError</span><span class="token punctuation">.</span>outOfCleanDishes <span class="token punctuation">{</span>
+  <span class="token function">washDishes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token builtin">SandwichError</span><span class="token punctuation">.</span><span class="token function">missingIngredients</span><span class="token punctuation">(</span><span class="token keyword">let</span> ingredients<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">buyGroceries</span><span class="token punctuation">(</span>ingredients<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+</ul>
+<h2 id="assertions-and-preconditions" style="position:relative;"><a href="#assertions-and-preconditions" aria-label="assertions and preconditions permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Assertions and Preconditions</h2>
+<ul>
+<li><code class="language-text">Assertion</code> 과 <code class="language-text">precondition</code>은 실행 중에 이 구문 이후의 코드를 계속 실행하기 전에 검사할 조건을 정의하기 위해 사용한다.</li>
+<li>assertion과 precondition이 <code class="language-text">false</code> 가 되면 더 이상 코드를 실행하지 않고 프로그램을 종료시킨다.</li>
+<li>assertion과 precondition은 잘못된 조건이 발생하는 것을 막기 위해서 사용하는 것이 아니라, 프로그램이 잘못된 상태에 들어섰을 때, 프로그램을 정상적으로 종료시키기 위한 목적에 가깝다.</li>
+<li>assertion과 precondition의 차이는 조건 검사를 수행하는 모드에 있다. assertion은 <code class="language-text">debug build</code> 일 때만 조건을 검사하고, precondition은 <code class="language-text">debug build</code> 와 <code class="language-text">production build</code>에서 모두 조건검사를 수행한다. 따라서, assertion은 실제 배포시에는 프로그램 성능에 영향을 미치지 않기 때문에 자유롭게 사용할 수 있다.</li>
+</ul>
+<h3 id="debugging-with-assertionspreconditions" style="position:relative;"><a href="#debugging-with-assertionspreconditions" aria-label="debugging with assertionspreconditions permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debugging with Assertions/Preconditions</h3>
+<ul>
+<li>assertion은 <code class="language-text">assert(_:-:file:line:)</code> 을 사용해서 작성할 수 있다. assert 함수의 인자로 검사할 조건과, 조건이 false가 되었을 때 출력할 메세지를 작성하는 것으로 정의할 수 있다.</li>
+<li>
+<p>메세지는 생략할 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> age <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token function">assert</span><span class="token punctuation">(</span>age <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"A person's age can't be less than zero"</span><span class="token punctuation">)</span></code></pre></div>
+</li>
+<li>
+<p>assertion 조건을 assert 함수가 아닌 다른 방법으로 이미 검사했다면, <code class="language-text">assertionFailure(_:file:line)</code> 함수를 호출하여 assertion을 일으킬 수 있다.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">if</span> age <span class="token operator">></span> <span class="token number">10</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"you can ride the roller-coaster"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> age <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+  <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"You can ride the ferris wheel"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">assertionFailure</span><span class="token punctuation">(</span><span class="token string">"A person's age cannot be less than zero"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+<li>precondition은 assertion과 모든 내용이 같고 assert 함수 대신 <code class="language-text">precondition(_:_:file:line:)</code>을 사용하고, assertionFailure 대신 <code class="language-text">preconditionFailure(_:file:line:)</code>을 사용한다.</li>
 </ul></div><div class="social-share"><a class="resp-sharing-button__link" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook"><div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--large"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"></path></svg></div><span class="service-label">Share on Facebook</span></div></a><a class="resp-sharing-button__link" href="#" rel="noopener" aria-label="Share on Twitter"><div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--large"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"></path></svg></div><span class="service-label">Share on Twitter</span></div></a></div><div class="sponsor-button"><a class="bmc-button" target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/jeonyeohun"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"/><span>Buy me a coffee</span></a></div><hr class="custom-hr"/><div class="bio"><div class="author"><div class="author-description"><div class="author-image gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:72px;height:72px;border-radius:100%"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVQ4yyWTa1CUVRzGXxBGLVHygggIeQFCVDBJi8YKxzLFimwyhRqKUhLRRWktJFDEYBFdFoGFBQJRuYsgAQstuwvLLnvjttw105k+NU3f+t6v4/bhmfPOufzO8z/P/5WsVgNWmxG7cwTnhJXxSQezC7PYx2xMzbmYnP1fM4vzuBbmsNitzP72CNfiAhNzs0wtzGObHGf60SJzT58iTbkcAmJlbOK57DgFcGp+WmyY4/c/njG9OMujZ0+Yf/KYGXFoYnbGDZucn3PDXItizv29gOvxYyS7w4RzfFQ4tAiNMmobYWxqTIBmKC65xcH4T5Cdl2MdcwjgAmPTU26YwzUpnE1gn5rEOu50j85pF9LQ0AAjZj0W6xA2h1kATUy4nPQbdASGROC7eiNBQWGUqSvdZZsdNsyi7MFhI/36QQaMegwjJkaezzvtSCMjAjZqZNQ67HZpdViwjduxjNnJPJ3KjyeT6dWUou/rZthuoV/XT3dvN+0dbbQ9uE9Xb48brDcNoxs2IJktRgEcdrt7XrJZHDLZzIyLIIYGunkm3vDPxUl0v7TTZxik65dOWtubuXOvgbtNd2m+30r7g3Z6B/rQDmqR9AYtQ8ODbpnMRgwmIzYRzr3WZmLj4rmaX0BnWwMNGhXNjfW0td6msbEOTXUFVRo1NbXVNLU08rDnIVXVGqSe7jaMQ7+iNwygH9Yzah9Fq9MSuvMNJI+17IiJo7LsJi2NtdRWlaK4lkddTQUqVTFF1wu4UaygvFxFW0sD8otypJaGSlTZadQUXaKpSoG2t4ODCSeQPP1Y8tJmIl97F03lLVoba1AWF3I5OxuNupSrV3PIunSR3B+zyMrK4mxGJoeOJiI1NTZw7buz/JByHIUsmYqiXC5ckPNR/IcsWRmM54oQbikVdHeIN6tX03ynmjt1as7LzpB5LpXE48dYuWUvK7bG8uIWUVVjRT4/K7PJOXuK7IwzqBU5lKZ/iepUIkcF9HhyKsmfJ1N58yqVpYWUKQuorrjJO4c/Jfrtj9n/YRIvbBag9dtZvmkP0lj1MXoLEyjPyaC2pICfS/L56tBBrp0/h7a9jn//+Y2W2xpyLl7gcs4PyDNlXMm9hCzzeyLeO0n44bNsP5LGlrcSCY9LQpo3NvPE0sXvjj4eWbqZHurEOdjB03EdM/oWuqpy0N2vpbxUiVKloqSsgrLKaoqUKorV9ZzJU/OZrJDXE9LwDn4d6cG9Gkb67/PYqeOvxVH+XjRj1bagEgmeS0vj1OcnuCxLIffc18hOJVNSdEWEUkZ+gZKeh510iBaSZ+ehqm+jtrYWKWxnLKE79vLq3jiOJCSRfyUPtXBTeqOIshuFVJf8RENJLhlJCci//QRlQTzX8hI5ffo8TQ23sZt0aOru0aE10Nn3K1JiyjdE7tmHl89GJMkfaUUwS/3CCYt6i3jRPt/JsyhWKKivKqen7S79Pd3iJzCJnjXT3NVPdkE5ialZ7Ig9QvjOA0ipGXJCo0Ts67bitSaMZf6v4Cn6T3ohGMkrAGnpRjx8thAY8Sb7RbLpF7KJT0wnePchvAN2sSboNSK3x7Ex9A3ePfAZUlF5OV+np+PjtxXJZ5NwGIKn7yYBCcFDQD1WbRYSa6tCxfrL7gokr0Ck1ZH4bIjGX7RMYOg+VoXsJmTbfqSCW0rS5TJ8124mOCicPfsO4BsSw4aow4QdOMmGmKNIK0NZsm4bS9dHskzIa20kS/yi8fbfxbKA3SwPjGF50C58N72JdPl6ISdSUlgVGEWAuOH9j5PY/UEaUV8oiE4uYtuxPLzXR+OxOhxvv214rolA8o3Ac10UkoB6+L+KZ0AMSwN3sTwklv8AOM/vAu4rpPQAAAAASUVORK5CYII=" alt="전여훈" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/53242afbb9ef5ff47fc2da701bb92751/e5b88/profile.png 1x,
 /static/53242afbb9ef5ff47fc2da701bb92751/e7bd6/profile.png 1.5x,
 /static/53242afbb9ef5ff47fc2da701bb92751/a12fc/profile.png 2x" /><img loading="lazy" width="72" height="72" srcset="/static/53242afbb9ef5ff47fc2da701bb92751/e5b88/profile.png 1x,
