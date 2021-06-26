@@ -13,7 +13,7 @@ draft: false
 ## Terminology
 
 - Operator는 `unary`, `binary`, `tenary` 세 가지 종류로 구분할 수 있다.
-- `Unary operator`는 피연산자를 하나만 가지는 연산자이다. 연산자가 피연산자 앞에 위치할 경우에는 `prefix operator`, 연산자가 피연산자 뒤에 위치할 경우는 `postfix oeprator`라고 한다.
+- `Unary operator`는 피연산자를 하나만 가지는 연산자이다. 연산자가 피연산자 앞에 위치할 경우에는 `prefix operator`, 연산자가 피연산자 뒤에 위치할 경우는 `postfix operator`라고 한다.
 - `Binary operator`는 두개의 피연산자를 가지는 연산자이다. 동시에 binary operator 는 `infix` 라고도 하는데, 두 피연산자 사이에 연산자가 위치하기 때문이다.
 - `Ternary operator` 는 세 개의 피연산자를 가지는 연산자이다.
 
