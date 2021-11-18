@@ -11,6 +11,7 @@ header {
     font-size: 3.8rem;
     color: #7A7EF7;
     text-align: center;
+    line-height: 0.8em;
 }
 
 section {
@@ -24,8 +25,10 @@ section {
 
 p {
     font-weight: 700;
+    margin-top: 2.5rem;
 }
 
 a, a:visited {
     color: #7A7EF7;
+    margin: 0.2rem 0;
 }
