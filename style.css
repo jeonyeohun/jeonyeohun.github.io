@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+
+html {
+    background-color: #FFE981;
+    font-family: 'Racing Sans One', cursive;
+    user-select: none;
+    
+}
+
+header {
+    font-size: 3.8rem;
+    color: #7A7EF7;
+}
+
+section {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    font-weight: 700;
+}
+
+a, a:visited {
+    color: #7A7EF7;
+}
